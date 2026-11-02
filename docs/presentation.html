@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>MyIoT — концепция проекта</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #101915;
+      color: #f2f5ef;
+      --muted: #b6c4bb;
+      --mint: #a9e6c1;
+      --panel: #1a2821;
+      --line: #30453a;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; }
+    .deck { width: min(100vw, 1440px); padding: 3vh 4vw 2vh; }
+    .slide {
+      display: none;
+      position: relative;
+      min-height: min(78vh, 760px);
+      padding: clamp(2rem, 6vw, 6rem);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 92% 8%, #294b39 0, transparent 34%),
+        linear-gradient(145deg, #1a2821, #121b17 72%);
+      box-shadow: 0 24px 80px #0005;
+    }
+    .slide.active { display: flex; flex-direction: column; justify-content: center; }
+    .slide::after {
+      content: "";
+      position: absolute;
+      width: 18rem;
+      height: 18rem;
+      right: -9rem;
+      bottom: -11rem;
+      border: 1px solid #a9e6c126;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2rem #a9e6c10a, 0 0 0 4rem #a9e6c108;
+      pointer-events: none;
+    }
+    .eyebrow {
+      margin: 0 0 1.2rem;
+      color: var(--mint);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 { max-width: 13ch; margin: 0; font-size: clamp(3.2rem, 9vw, 7.5rem); line-height: .96; letter-spacing: -.06em; }
+    h2 { max-width: 18ch; margin: 0 0 1.4rem; font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1.04; letter-spacing: -.045em; }
+    .lead { max-width: 48rem; margin: 1.6rem 0 0; color: var(--muted); font-size: clamp(1.15rem, 2.3vw, 1.8rem); line-height: 1.5; }
+    ul { display: grid; gap: .85rem; max-width: 54rem; margin: .4rem 0 0; padding: 0; list-style: none; }
+    li { position: relative; padding-left: 1.7rem; color: #e2eae4; font-size: clamp(1.08rem, 2vw, 1.5rem); line-height: 1.4; }
+    li::before { content: ""; position: absolute; top: .58em; left: 0; width: .56rem; height: .56rem; border-radius: 50%; background: var(--mint); }
+    .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; max-width: 58rem; margin: 1rem 0 1.3rem; }
+    .flow span { padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: #ffffff08; color: var(--mint); font-weight: 700; text-align: center; }
+    .flow span:not(:last-child)::after { content: "  →"; color: var(--muted); }
+    .note { max-width: 50rem; color: var(--muted); font-size: clamp(1rem, 1.7vw, 1.25rem); line-height: 1.5; }
+    .controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem .2rem 0; color: var(--muted); }
+    .buttons { display: flex; gap: .5rem; }
+    button { min-width: 2.8rem; min-height: 2.8rem; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); color: #f2f5ef; font: inherit; cursor: pointer; }
+    button:hover, button:focus-visible { border-color: var(--mint); outline: none; }
+    .hint { font-size: .9rem; }
+    @media (max-width: 650px) {
+      .deck { padding: 1rem; }
+      .slide { min-height: 78vh; padding: 2rem 1.5rem; }
+      .flow { grid-template-columns: 1fr; }
+      .flow span:not(:last-child)::after { content: "  ↓"; }
+      .hint { display: none; }
+    }
+    @media print {
+      @page { size: 16in 9in; margin: 0; }
+      body { display: block; background: #101915; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .deck { width: auto; padding: 0; }
+      .slide, .slide.active { display: flex !important; min-height: 9in; height: 9in; border: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
+      .controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="Презентация MyIoT">
+    <section class="slide active" aria-label="Слайд 1">
+      <p class="eyebrow">Концепция проекта</p>
+      <h1>MyIoT</h1>
+      <p class="lead">Модульная IoT-система для дома и сада.<br>Первый шаг — безопасный автополив растений.</p>
+    </section>
+    <section class="slide" aria-label="Слайд 2">
+      <p class="eyebrow">Зачем этот проект</p>
+      <h2>Просто подключить. Надёжно оставить.</h2>
+      <ul>
+        <li>Модульность — но отдельная силовая часть для каждого класса нагрузки.</li>
+        <li>Безопасное состояние при сбое датчика, Wi-Fi или сервера.</li>
+        <li>Аккуратная плата, корпус, маркировка и понятные разъёмы.</li>
+        <li>Локальные сценарии, ручная остановка и сервер под контролем владельца.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 3">
+      <p class="eyebrow">Первый продукт</p>
+      <h2>Один контур автополива</h2>
+      <ul>
+        <li>ESP32-C3 + датчик влажности.</li>
+        <li>Низковольтная DC-помпа через рассчитанный для неё драйвер.</li>
+        <li>Порог влажности, гистерезис и пауза между поливами.</li>
+        <li>Лимит времени работы, защита от сухого хода и журнал событий.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 4">
+      <p class="eyebrow">Как устроено</p>
+      <h2>Критичная логика остаётся локальной</h2>
+      <div class="flow" aria-label="Датчики и кнопка, устройство, драйвер помпы">
+        <span>Датчик + STOP</span><span>ESP32-C3</span><span>DC-помпа</span>
+      </div>
+      <p class="note">Собственный сервер хранит конфигурацию, события и OTA-образы. Адаптер Яндекса изолирован от локальной автоматики.</p>
+    </section>
+    <section class="slide" aria-label="Слайд 5">
+      <p class="eyebrow">Безопасность</p>
+      <h2>Сбой не должен включать насос</h2>
+      <ul>
+        <li>Выход выключен после запуска, reset и при ошибке.</li>
+        <li>Неисправный датчик не запускает полив.</li>
+        <li>Время и частота полива ограничены на самом устройстве.</li>
+        <li>Уникальные ключи, TLS и закрытая от интернета панель управления.</li>
+        <li>Прототип — только низковольтный; 230 В не входит в первый этап.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 6">
+      <p class="eyebrow">Обновления</p>
+      <h2>OTA с проверкой и откатом</h2>
+      <ul>
+        <li>Сервер владельца публикует подписанное обновление.</li>
+        <li>Устройство проверяет подпись, модель и версию.</li>
+        <li>Новая прошивка записывается во второй слот.</li>
+        <li>При ошибке загрузчик возвращает прежнюю рабочую версию.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 7">
+      <p class="eyebrow">Интеграция</p>
+      <h2>Свой сервер, Яндекс — отдельным адаптером</h2>
+      <ul>
+        <li>Автополив работает локально и не зависит от облака.</li>
+        <li>Сначала проверяем официальный путь интеграции для личного проекта.</li>
+        <li>Голосовое управление может требовать публичный HTTPS endpoint и сервис Яндекса.</li>
+        <li>Если внешние подключения запрещены полностью, интеграция может быть несовместима с этим требованием.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 8">
+      <p class="eyebrow">Путь к MVP</p>
+      <h2>От стенда к собственному устройству</h2>
+      <ul>
+        <li>Уточнить характеристики помпы, питания и датчика.</li>
+        <li>Собрать стенд: измерения, STOP, низковольтная нагрузка.</li>
+        <li>Проверить ошибки и потери связи; добавить локальный сценарий.</li>
+        <li>Подключить self-hosted сервер и OTA A/B с откатом.</li>
+        <li>Спроектировать PCB и корпус; затем исследовать интеграцию Яндекса.</li>
+      </ul>
+    </section>
+    <section class="slide" aria-label="Слайд 9">
+      <p class="eyebrow">Результат первого этапа</p>
+      <h2>Автополив, который можно доверить</h2>
+      <p class="lead">Управляет помпой по влажности, останавливается при ошибках, работает без внешнего сервиса и восстанавливается после неудачного обновления.</p>
+      <p class="note">Следующее решение: выбрать конкретную помпу и источник питания, чтобы рассчитать силовой модуль.</p>
+    </section>
+    <nav class="controls" aria-label="Управление презентацией">
+      <span id="counter" aria-live="polite">1 / 9</span>
+      <span class="hint">Стрелки ← → или пробел · Печать в PDF: Ctrl+P</span>
+      <span class="buttons">
+        <button id="previous" type="button" aria-label="Предыдущий слайд">←</button>
+        <button id="next" type="button" aria-label="Следующий слайд">→</button>
+      </span>
+    </nav>
+  </main>
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const counter = document.querySelector("#counter");
+    let current = 0;
+    function show(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === current);
+        slide.setAttribute("aria-hidden", i === current ? "false" : "true");
+      });
+      counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+    document.querySelector("#previous").addEventListener("click", () => show(current - 1));
+    document.querySelector("#next").addEventListener("click", () => show(current + 1));
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight" || event.key === " ") { event.preventDefault(); show(current + 1); }
+      if (event.key === "ArrowLeft") show(current - 1);
+    });
+  </script>
+</body>
+</html>
