@@ -1,0 +1,262 @@
+<mxfile host="app.diagrams.net" agent="Copilot">
+  <diagram id="watering-wiring" name="Схема автополива">
+    <mxGraphModel dx="2977" dy="1659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;fontStyle=1;fontColor=#20372B;" value="Подключение компонентов автополива" vertex="1">
+          <mxGeometry height="48" width="900" x="60" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#68796D;" value="Структурная схема · без корпусов" vertex="1">
+          <mxGeometry height="30" width="650" x="62" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="sensor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D7DFD5;strokeWidth=2;fontColor=#263D30;fontSize=17;spacing=18;align=left;verticalAlign=middle;" value="&lt;b&gt;Датчик влажности&lt;/b&gt;&lt;br&gt;Ёмкостной v1.2&lt;br&gt;&lt;br&gt;VCC — 3V3&lt;br&gt;AO — аналоговый выход&lt;br&gt;GND — земля" vertex="1">
+          <mxGeometry height="205" width="280" x="70" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="esp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#223B2E;strokeColor=#17271F;strokeWidth=2;fontColor=#F3F6EF;fontSize=17;spacing=20;align=left;verticalAlign=middle;" value="&lt;b&gt;ESP32-C3 SuperMini&lt;/b&gt;&lt;br&gt;&lt;br&gt;3V3 — питание датчика&lt;br&gt;ADC — сигнал AO&lt;br&gt;GPIO — управление MOSFET&lt;br&gt;GND — общая земля&lt;br&gt;&lt;br&gt;Общий источник: 5 В DC" vertex="1">
+          <mxGeometry height="275" width="350" x="495" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="mosfet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D7DFD5;strokeWidth=2;fontColor=#263D30;fontSize=17;spacing=18;align=left;verticalAlign=middle;" value="&lt;b&gt;MOSFET-модуль IRF520N&lt;/b&gt;&lt;br&gt;&lt;br&gt;Логика: VCC 3,3 В, GND, SIG&lt;br&gt;Силовые клеммы: IN+, IN− (5 В)&lt;br&gt;OUT+, OUT− — к помпе" vertex="1">
+          <mxGeometry height="205" width="280" x="970" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="pump" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D7DFD5;strokeWidth=2;fontColor=#263D30;fontSize=17;spacing=18;align=left;verticalAlign=middle;" value="&lt;b&gt;Помпа DC&lt;/b&gt;&lt;br&gt;3–6 В&lt;br&gt;100–200 мА*&lt;br&gt;Пусковой ток уточнить" vertex="1">
+          <mxGeometry height="185" width="190" x="1360" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="supply" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D7DFD5;strokeWidth=2;fontColor=#263D30;fontSize=17;spacing=18;align=left;verticalAlign=middle;" value="&lt;b&gt;Общий источник питания&lt;/b&gt;&lt;br&gt;5 В DC, 1 А&lt;br&gt;для ESP и помпы" vertex="1">
+          <mxGeometry height="155" width="200" x="62" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sensor-ao" edge="1" parent="1" source="sensor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D9873D;strokeWidth=3;fontColor=#9B642F;fontSize=13;endArrow=none;endFill=0;exitX=1.002;exitY=0.66;entryX=-0.003;entryY=0.618;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="esp" value="AO → ADC">
+          <mxGeometry relative="1" x="0.1124" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points" />
+            <mxPoint x="340" y="370.0000000000001" as="sourcePoint" />
+            <mxPoint x="486.39999999999986" y="372.42500000000007" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-esp-sig" edge="1" parent="1" source="esp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D9873D;strokeWidth=3;fontColor=#9B642F;fontSize=13;endArrow=block;endFill=1;exitX=1;exitY=0.72;entryX=0;entryY=0.42;" target="mosfet" value="GPIO → SIG">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-1" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=0.461;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="160" y="480" as="sourcePoint" />
+            <mxPoint x="159.99999999999994" y="439.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-2" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.25" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="490" />
+            </Array>
+            <mxPoint x="180" y="490" as="sourcePoint" />
+            <mxPoint x="140" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.5" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="500" />
+            </Array>
+            <mxPoint x="170" y="500" as="sourcePoint" />
+            <mxPoint x="150" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.1667" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="480" />
+            </Array>
+            <mxPoint x="190" y="480" as="sourcePoint" />
+            <mxPoint x="130" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-5" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=0.461;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="570" y="515" as="sourcePoint" />
+            <mxPoint x="570" y="475" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-6" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.25" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="525" />
+            </Array>
+            <mxPoint x="590" y="525" as="sourcePoint" />
+            <mxPoint x="550" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-7" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.5" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="535" />
+            </Array>
+            <mxPoint x="580" y="535" as="sourcePoint" />
+            <mxPoint x="560" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-8" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.1667" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="515" />
+            </Array>
+            <mxPoint x="600" y="515" as="sourcePoint" />
+            <mxPoint x="540" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-13" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=0.461;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="450" />
+            </Array>
+            <mxPoint x="1080" y="480.00000000000006" as="sourcePoint" />
+            <mxPoint x="1080" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-14" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.25" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="490.00000000000006" />
+            </Array>
+            <mxPoint x="1100" y="490.00000000000006" as="sourcePoint" />
+            <mxPoint x="1060" y="490.00000000000006" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-15" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.5" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="500" />
+            </Array>
+            <mxPoint x="1090" y="500" as="sourcePoint" />
+            <mxPoint x="1070" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-16" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.1667" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="480.00000000000006" />
+            </Array>
+            <mxPoint x="1110" y="480.00000000000006" as="sourcePoint" />
+            <mxPoint x="1050" y="480.00000000000006" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-17" edge="1" parent="1" source="pump" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=1.01;entryY=0.65;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=5;strokeColor=light-dark(#000000,#000000);exitX=0;exitY=0.618;exitDx=0;exitDy=0;exitPerimeter=0;" target="mosfet" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1300" y="410" as="sourcePoint" />
+            <mxPoint x="1300" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-21" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=0.461;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="162" y="795" as="sourcePoint" />
+            <mxPoint x="162" y="755" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-22" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.25" as="geometry">
+            <Array as="points">
+              <mxPoint x="162" y="805" />
+            </Array>
+            <mxPoint x="182" y="805" as="sourcePoint" />
+            <mxPoint x="142" y="805" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-23" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.5" as="geometry">
+            <Array as="points">
+              <mxPoint x="162" y="815" />
+            </Array>
+            <mxPoint x="172" y="815" as="sourcePoint" />
+            <mxPoint x="152" y="815" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-24" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#000000,#000000);" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.1667" as="geometry">
+            <Array as="points">
+              <mxPoint x="162" y="795" />
+            </Array>
+            <mxPoint x="192" y="795" as="sourcePoint" />
+            <mxPoint x="132" y="795" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-25" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="161.5" y="600" as="sourcePoint" />
+            <mxPoint x="161.5" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-26" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="142" y="570" as="sourcePoint" />
+            <mxPoint x="182" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-27" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#EA6B66,#EA6B66);" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap;&quot;&gt;5 Вольт&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="137" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-28" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap;&quot;&gt;GND&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="37" x="143.5" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-29" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="163" y="235" />
+            </Array>
+            <mxPoint x="163" y="235" as="sourcePoint" />
+            <mxPoint x="163" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-30" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="143.5" y="205" as="sourcePoint" />
+            <mxPoint x="183.5" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-31" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#EA6B66,#EA6B66);" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap;&quot;&gt;3V3&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap; background-color: rgb(46, 46, 46);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="150" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-32" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1084.5" y="235" as="sourcePoint" />
+            <mxPoint x="1084.5" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-33" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1065" y="205" as="sourcePoint" />
+            <mxPoint x="1105" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-34" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#EA6B66,#EA6B66);" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap;&quot;&gt;3V3&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="1060" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-35" edge="1" parent="1" source="pump" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);exitX=-0.019;exitY=0.293;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.001;entryY=0.368;entryDx=0;entryDy=0;entryPerimeter=0;" target="mosfet" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1344.5" y="310" as="sourcePoint" />
+            <mxPoint x="1250" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-39" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="574.5" y="200" as="sourcePoint" />
+            <mxPoint x="574.5" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-40" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;strokeColor=light-dark(#EA6B66,#EA6B66);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="555" y="170" as="sourcePoint" />
+            <mxPoint x="595" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PExnWD6j_jsHP0It-3XX-41" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#EA6B66,#EA6B66);" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px; text-wrap-mode: nowrap;&quot;&gt;5 Вольт&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="50" x="550" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="protection-note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F6EF;strokeColor=#D7DFD5;fontColor=#405649;fontSize=14;spacing=12;align=left;verticalAlign=middle;" value="&lt;b&gt;Добавить в силовую цепь:&lt;/b&gt; F1 подобрать по пусковому току помпы; D1 — параллельно мотору (катод к «+»), если защита не встроена.&lt;br&gt;&lt;b&gt;Важно:&lt;/b&gt; IRF520N коммутирует минус. OUT+ может быть соединён напрямую с IN+ — проверить схему платы. Проверить просадку источника 5 В / 1 А при старте помпы и работе ESP; пусковой ток помпы не измерен." vertex="1">
+          <mxGeometry height="115" width="1190" x="300" y="747" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

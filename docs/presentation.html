@@ -61,9 +61,14 @@
     .card { min-width: 0; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 12px; background: #ffffff08; }
     .card h3 { margin: 0 0 .4rem; color: var(--mint); font-size: clamp(1rem, 1.7vw, 1.25rem); line-height: 1.25; overflow-wrap: anywhere; }
     .card p { margin: 0; color: #e2eae4; font-size: clamp(.92rem, 1.45vw, 1.1rem); line-height: 1.4; overflow-wrap: anywhere; }
-    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; max-width: 68rem; }
-    .flow span { position: relative; display: grid; align-content: center; min-height: 5rem; padding: .8rem; border: 1px solid var(--line); border-radius: 12px; background: #ffffff08; color: var(--mint); font-size: clamp(.9rem, 1.5vw, 1.12rem); font-weight: 700; line-height: 1.3; text-align: center; }
-    .flow span:not(:last-child)::after { content: "→"; position: absolute; z-index: 1; right: -.73rem; color: var(--muted); }
+    .module-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 68rem; }
+    .module { position: relative; min-width: 0; padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 14px; background: #ffffff08; }
+    .module:not(:last-child)::after { content: "→"; position: absolute; z-index: 1; top: 50%; right: -.82rem; padding: .1rem; transform: translate(50%, -50%); background: #17231d; color: var(--mint); font-size: 1.2rem; }
+    .module-index { margin: 0 0 .55rem; color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .12em; }
+    .module h3 { margin: 0 0 .4rem; color: var(--mint); font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+    .module p:last-child { margin: 0; color: #e2eae4; font-size: clamp(.9rem, 1.4vw, 1.05rem); line-height: 1.4; }
+    .pump-output { margin: 0; color: var(--muted); font-size: clamp(.95rem, 1.5vw, 1.1rem); font-weight: 700; }
+    .slide-idea .eyebrow, .slide-components .eyebrow { position: absolute; top: 1.6rem; left: 1.8rem; }
     .note { max-width: 54rem; margin: 0; color: var(--muted); font-size: clamp(.9rem, 1.4vw, 1.08rem); line-height: 1.45; }
     .source { color: var(--mint); text-decoration-thickness: 1px; text-underline-offset: 3px; }
     .controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem .2rem 0; color: var(--muted); }
@@ -78,9 +83,10 @@
       .slide.active { gap: .8rem; }
       .cards { grid-template-columns: 1fr; gap: .55rem; }
       .card { padding: .8rem .9rem; }
-      .flow { grid-template-columns: 1fr; gap: .5rem; }
-      .flow span { min-height: 3.5rem; }
-      .flow span:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.78rem; transform: translateX(50%); }
+      .module-flow { grid-template-columns: 1fr; gap: .55rem; }
+      .module { padding: .75rem .9rem; }
+      .module:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.66rem; transform: translate(50%, 50%); }
+      .slide-idea .eyebrow, .slide-components .eyebrow { top: 1rem; left: 1.4rem; }
       .hint { display: none; }
     }
     @media print {
@@ -93,7 +99,13 @@
       .lead { font-size: 19pt; }
       .card p, .note { font-size: 14pt; }
       .card h3 { font-size: 17pt; }
-      .flow span { min-height: 1in; font-size: 16pt; }
+      .module-flow { gap: .6in; }
+      .module { padding: .18in .22in; }
+      .module-index { font-size: 10pt; }
+      .module h3 { font-size: 17pt; }
+      .module p:last-child, .pump-output { font-size: 13pt; }
+      .module:not(:last-child)::after { right: -.36in; font-size: 18pt; }
+      .slide-idea .eyebrow, .slide-components .eyebrow { top: .55in; left: 1.2in; }
       .controls { display: none; }
       .slide:last-of-type { break-after: auto; page-break-after: auto; }
     }
@@ -106,62 +118,65 @@
       <h1>MyIoT</h1>
       <p class="lead">Свои устройства для дома и сада.<br>Первый проект — автополив.</p>
     </section>
-    <section class="slide" aria-label="Слайд 2">
+    <section class="slide slide-idea" aria-label="Слайд 2">
       <p class="eyebrow">Идея</p>
       <h2>Один контроллер — сменные модули</h2>
       <div class="cards">
         <article class="card"><h3>Модульность</h3><p>Питание, ESP, датчики и исполнительные блоки — отдельные корпуса.</p></article>
         <article class="card"><h3>Безопасность</h3><p>Ошибки и перезапуск не должны самопроизвольно включать нагрузку.</p></article>
-        <article class="card"><h3>Аккуратность</h3><p>Ключованные разъёмы, маркировка, крышки неиспользуемых портов.</p></article>
+        <article class="card"><h3>Продуманная конструкция</h3><p>Ключованные разъёмы, маркировка и крышки свободных портов.</p></article>
         <article class="card"><h3>Простота</h3><p>Подключить модуль, настроить сценарий, оставить работать.</p></article>
       </div>
     </section>
     <section class="slide" aria-label="Слайд 3">
       <p class="eyebrow">Архитектура автополива</p>
-      <h2>Три корпуса — один контур</h2>
-      <div class="flow" aria-label="Питание, ESP-контроллер, релейный модуль, помпа">
-        <span>Питание</span><span>ESP32-C3</span><span>Реле</span><span>Помпа</span>
+      <h2>Три модуля соединяются по цепочке</h2>
+      <div class="module-flow" aria-label="Модуль питания, ESP-контроллер, модуль MOSFET">
+        <article class="module"><p class="module-index">МОДУЛЬ 1</p><h3>Питание</h3><p>Подаёт питание на контроллер и нагрузку.</p></article>
+        <article class="module"><p class="module-index">МОДУЛЬ 2</p><h3>ESP32-C3</h3><p>Читает датчик и управляет исполнительным модулем.</p></article>
+        <article class="module"><p class="module-index">МОДУЛЬ 3</p><h3>MOSFET IRF520N</h3><p>Коммутирует питание помпы по сигналу ESP.</p></article>
       </div>
-      <div class="card"><h3>Датчик влажности</h3><p>Подключается к отдельному подписанному порту ESP-модуля.</p></div>
-      <p class="note">Силовой ток проходит по рассчитанным контактам, а GPIO передаёт только сигнал управления.</p>
+      <p class="pump-output">Выход третьего модуля → помпа</p>
+      <p class="note">Датчик подключается к ESP-модулю. Через GPIO проходит только сигнал, не ток помпы.</p>
     </section>
-    <section class="slide" aria-label="Слайд 4">
+    <section class="slide slide-components" aria-label="Слайд 4">
       <p class="eyebrow">Компоненты MVP</p>
-      <h2>Начинаем с низкого напряжения</h2>
+      <h2>Состав первого прототипа</h2>
       <div class="cards">
         <article class="card"><h3>Контроллер</h3><p>ESP32-C3 SuperMini<br>Wi-Fi, локальная автоматика</p></article>
         <article class="card"><h3>Датчик</h3><p>Ёмкостной v1.2<br>Аналоговый выход: заявлено 0,8–2,5 В</p></article>
         <article class="card"><h3>Помпа</h3><p>DC 3–6 В<br>Заявлено 100–200 мА, 1,2–1,6 л/мин</p></article>
-        <article class="card"><h3>Защита сценария</h3><p>Порог, гистерезис, лимит времени, пауза между поливами.</p></article>
+        <article class="card"><h3>Автоматика</h3><p>Порог влажности, лимит полива и пауза между циклами.</p></article>
       </div>
     </section>
     <section class="slide" aria-label="Слайд 5">
-      <p class="eyebrow">Решение по реле</p>
-      <h2>JQC-3FF-S-Z: кандидат, но не подтверждён для мотора</h2>
+      <p class="eyebrow">Ключ для помпы</p>
+      <h2>Используем MOSFET-модуль IRF520N</h2>
       <div class="cards">
-        <article class="card"><h3>Катушка 5 В</h3><p>0,36 Вт — около 72 мА во включённом состоянии.</p></article>
-        <article class="card"><h3>Контакты</h3><p>В даташите: максимум 30 В DC; заявленные рейтинги указаны для резистивной нагрузки.</p></article>
-        <article class="card"><h3>Для помпы</h3><p>DC-моторный рейтинг и пусковой ток помпы не подтверждены. Не закладывать в финальную плату без проверки.</p></article>
-        <article class="card"><h3>Вывод</h3><p>Для стендового прототипа — после проверки шилда и защиты контактов; батарейная версия потребует оценки расхода.</p></article>
+        <article class="card"><h3>Назначение</h3><p>Низковольтное управление помпой DC 3–6 В.</p></article>
+        <article class="card"><h3>Подключение</h3><p>Модуль коммутирует цепь помпы; схема и полярность — по маркировке платы.</p></article>
+        <article class="card"><h3>Проверка модуля</h3><p>Подтверждено: управление работает от 3,3 В, в выключенном состоянии потребления нет.</p></article>
+        <article class="card"><h3>Перед поливом</h3><p>Проверить запуск конкретной помпы и нагрев модуля под нагрузкой.</p></article>
       </div>
-      <p class="note">Источник: <a class="source" href="https://datasheet4u.com/datasheets/Hongfa/JQC-3FF-S-Z/1492147">даташит JQC-3FF-S-Z</a>; <a class="source" href="https://en.tonglingrelay.com/product/JQC-3FF-S-Z-5V-Buy-Relays-From-Tongling-Factory-1061.html">данные семейства Tongling</a>. Вход GPIO шилда отдельно проверить на 3,3 В.</p>
+      <p class="note">Результат относится к проверенному модулю. Использовать только для низковольтной DC-нагрузки, не для сети 230 В.</p>
     </section>
     <section class="slide" aria-label="Слайд 6">
-      <p class="eyebrow">Питание и границы</p>
-      <h2>USB-C для стенда, 3×AA — отдельный этап</h2>
+      <p class="eyebrow">Питание</p>
+      <h2>Один источник 5 В для системы</h2>
       <div class="cards">
-        <article class="card"><h3>USB-C</h3><p>Питание через штатный разъём SuperMini после проверки ревизии платы.</p></article>
-        <article class="card"><h3>Батареи</h3><p>3×AA требуют преобразователя; не подключать напрямую к USB-C или 3V3.</p></article>
-        <article class="card"><h3>Помпа</h3><p>Отдельная нагрузочная ветвь; не питать от GPIO или стабилизатора ESP.</p></article>
-        <article class="card"><h3>230 В</h3><p>Не входит в прототип. Для светильника нужен отдельный рассчитанный и закрытый модуль.</p></article>
+        <article class="card"><h3>Источник</h3><p>Общий блок 5 В, 1 А питает ESP32-C3 и помпу.</p></article>
+        <article class="card"><h3>Контроллер и логика</h3><p>ESP — через USB-C. VCC MOSFET-модуля — 3,3 В, SIG — от GPIO.</p></article>
+        <article class="card"><h3>Помпа</h3><p>Питать от общей линии 5 В через MOSFET. Ключ коммутирует минус; GPIO помпу не питает.</p></article>
+        <article class="card"><h3>Проверка</h3><p>Пусковой ток неизвестен: проверить запуск, просадку 5 В и нагрев модуля.</p></article>
       </div>
+      <p class="note">3×AA — только через подходящий преобразователь. Не соединять USB и батареи напрямую; 230 В не входит в MVP.</p>
     </section>
     <section class="slide" aria-label="Слайд 7">
       <p class="eyebrow">План работ</p>
       <h2>Путь к первой рабочей версии</h2>
       <div class="cards">
-        <article class="card"><h3>1. Проверить</h3><p>Точный релейный шилд, сигнал 3,3 В, помпу и её пусковой ток.</p></article>
-        <article class="card"><h3>2. Собрать стенд</h3><p>Три модуля, датчик, остановка, испытание на безопасной нагрузке.</p></article>
+        <article class="card"><h3>1. Проверить</h3><p>Запуск помпы и нагрев MOSFET-модуля под нагрузкой.</p></article>
+        <article class="card"><h3>2. Собрать стенд</h3><p>Три модуля, датчик и безопасное включение/остановка помпы.</p></article>
         <article class="card"><h3>3. Сделать MVP</h3><p>Автополив с лимитами и работой без сервера.</p></article>
         <article class="card"><h3>4. Расширить</h3><p>OTA с откатом, самохостящийся сервер, затем интеграция с Яндексом.</p></article>
       </div>
@@ -169,7 +184,7 @@
     <section class="slide" aria-label="Слайд 8">
       <p class="eyebrow">Следующий результат</p>
       <h2>Автополив на модульной платформе</h2>
-      <p class="lead">Сначала фиксируем разъёмы и питание, затем проверяем реле с конкретной помпой. После этого проектируем корпуса и платы.</p>
+      <p class="lead">Сначала проверяем MOSFET-модуль с конкретной помпой и фиксируем питание. Затем проектируем корпуса и разъёмы.</p>
     </section>
     <nav class="controls" aria-label="Управление презентацией">
       <span id="counter" aria-live="polite">1 / 8</span>

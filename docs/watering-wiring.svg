@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" style="max-width:100%;height:auto" role="img" aria-labelledby="title description">
+  <title id="title">Схема подключения автополива MyIoT</title>
+  <desc id="description">Датчик подключается к ESP32-C3 по аналоговому сигналу, символам питания 3V3 и GND. GPIO управляет MOSFET IRF520N. Общий источник 5 В, 1 А питает ESP и помпу; MOSFET коммутирует минус помпы. Одинаковые символы GND обозначают общий электрический узел.</desc>
+  <defs>
+    <linearGradient id="background" x2="0" y2="1">
+      <stop stop-color="#f8f9f5"/>
+      <stop offset="1" stop-color="#edf1eb"/>
+    </linearGradient>
+    <filter id="shadow" x="-.2" y="-.2" width="1.4" height="1.5">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#20372b" flood-opacity=".09"/>
+    </filter>
+    <marker id="signalArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#d9873d"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .title { fill: #20372b; font-size: 39px; font-weight: 750; letter-spacing: -.8px; }
+      .subtitle { fill: #68796d; font-size: 18px; }
+      .heading { fill: #263d30; font-size: 21px; font-weight: 700; }
+      .sub { fill: #718075; font-size: 14px; }
+      .pin { fill: #405649; font-size: 14px; font-weight: 700; }
+      .body { fill: #566a5d; font-size: 14px; }
+      .tiny { fill: #79867d; font-size: 12px; }
+      .card { fill: #fff; stroke: #d7dfd5; stroke-width: 2; }
+      .signal { fill: none; stroke: #d9873d; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+      .load { fill: none; stroke: #cf6258; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .load-return { fill: none; stroke: #46594d; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .ground-icon { fill: none; stroke: #46594d; stroke-width: 2.5; stroke-linecap: round; }
+      .power-icon { fill: none; stroke: #42936b; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .orange-dot { fill: #d9873d; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <text x="64" y="70" class="title">Подключение компонентов автополива</text>
+  <text x="66" y="105" class="subtitle">Без корпусов · значки питания и земли заменяют длинные шины</text>
+  <line x1="66" y1="130" x2="1534" y2="130" stroke="#dce3da" stroke-width="2"/>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="245" width="280" height="230" rx="18" class="card"/>
+    <text x="98" y="288" class="heading">Датчик влажности</text>
+    <text x="98" y="315" class="sub">ёмкостной v1.2</text>
+    <line x1="98" y1="333" x2="322" y2="333" stroke="#e5eae3" stroke-width="2"/>
+    <text x="103" y="374" class="pin">VCC</text>
+    <text x="103" y="418" class="pin">AO</text>
+    <text x="103" y="462" class="pin">GND</text>
+    <circle cx="318" cy="369" r="5" fill="#42936b"/>
+    <circle cx="318" cy="413" r="5" class="orange-dot"/>
+    <circle cx="318" cy="457" r="5" fill="#46594d"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="500" y="205" width="350" height="300" rx="20" fill="#223b2e"/>
+    <text x="532" y="248" fill="#b5e3c2" font-size="12" font-weight="700" letter-spacing="2">КОНТРОЛЛЕР</text>
+    <text x="532" y="287" fill="#f3f6ef" font-size="25" font-weight="700">ESP32-C3</text>
+    <text x="532" y="314" fill="#c3d1c6" font-size="14">SuperMini</text>
+    <line x1="532" y1="334" x2="818" y2="334" stroke="#496253" stroke-width="2"/>
+    <text x="532" y="377" fill="#eaf0eb" font-size="14" font-weight="700">ADC</text>
+    <text x="532" y="421" fill="#eaf0eb" font-size="14" font-weight="700">GPIO</text>
+    <text x="532" y="469" fill="#a9e3bd" font-size="13">Питание: общий источник 5 В</text>
+    <circle cx="500" cy="369" r="5" class="orange-dot"/>
+    <circle cx="850" cy="413" r="5" class="orange-dot"/>
+    <circle cx="675" cy="205" r="5" fill="#42936b"/>
+    <circle cx="675" cy="505" r="5" fill="#46594d"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="980" y="245" width="280" height="230" rx="18" class="card"/>
+    <text x="1008" y="288" class="heading">MOSFET-модуль</text>
+    <text x="1008" y="315" class="sub">IRF520N · вход 3,3 В проверен</text>
+    <line x1="1008" y1="333" x2="1232" y2="333" stroke="#e5eae3" stroke-width="2"/>
+    <text x="1012" y="374" class="pin">SIG</text>
+    <text x="1012" y="418" class="pin">GND</text>
+    <text x="1012" y="462" class="pin">OUT−</text>
+    <circle cx="980" cy="369" r="5" class="orange-dot"/>
+    <circle cx="980" cy="413" r="5" fill="#46594d"/>
+    <circle cx="1260" cy="457" r="5" fill="#46594d"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1330" y="280" width="210" height="195" rx="18" class="card"/>
+    <text x="1358" y="322" class="heading">Помпа</text>
+    <text x="1358" y="350" class="sub">DC 3–6 В</text>
+    <text x="1358" y="374" class="sub">100–200 мА*</text>
+    <line x1="1358" y1="392" x2="1512" y2="392" stroke="#e5eae3" stroke-width="2"/>
+    <text x="1360" y="431" class="pin">+</text>
+    <text x="1360" y="463" class="pin">−</text>
+    <circle cx="1330" cy="425" r="5" fill="#cf6258"/>
+    <circle cx="1330" cy="457" r="5" fill="#46594d"/>
+  </g>
+
+  <g aria-label="Сигнальные подключения">
+    <path d="M350 413 H500" class="signal" marker-end="url(#signalArrow)"/>
+    <text x="389" y="400" class="tiny">AO → ADC</text>
+    <path d="M850 413 H930 V369 H980" class="signal" marker-end="url(#signalArrow)"/>
+    <text x="870" y="397" class="tiny">GPIO → SIG</text>
+  </g>
+
+  <g aria-label="Символы 3V3">
+    <path d="M318 369 V205 M675 205 V178" class="power-icon"/>
+    <path d="M306 219 L318 207 L330 219 M663 192 L675 180 L687 192" class="power-icon"/>
+    <text x="335" y="212" fill="#42936b" font-size="14" font-weight="700">3V3</text>
+    <text x="692" y="184" fill="#42936b" font-size="14" font-weight="700">3V3</text>
+  </g>
+
+  <g aria-label="Символы GND">
+    <path d="M318 457 V535 M675 505 V535 M1120 413 V535" fill="none" stroke="#46594d" stroke-width="2.5"/>
+    <path d="M306 535 H330 M310 542 H326 M315 549 H321" class="ground-icon"/>
+    <path d="M663 535 H687 M667 542 H683 M672 549 H678" class="ground-icon"/>
+    <path d="M1108 535 H1132 M1112 542 H1128 M1117 549 H1123" class="ground-icon"/>
+  </g>
+
+  <g aria-label="Питание и коммутация помпы">
+    <rect x="960" y="650" width="260" height="132" rx="18" class="card" filter="url(#shadow)"/>
+    <text x="988" y="691" class="heading">Источник 5 В / 1 А</text>
+    <text x="988" y="720" class="sub">общий: ESP + помпа</text>
+    <text x="1168" y="719" class="pin">+</text>
+    <text x="1168" y="757" class="pin">−</text>
+    <circle cx="1190" cy="714" r="5" fill="#cf6258"/>
+    <circle cx="1190" cy="752" r="5" fill="#46594d"/>
+
+    <path d="M1190 714 H1300 V635 M1300 585 V425 H1330" class="load"/>
+    <rect x="1280" y="585" width="40" height="50" rx="7" fill="#fff" stroke="#d7dfd5" stroke-width="2"/>
+    <text x="1300" y="615" fill="#cf6258" font-size="13" font-weight="700" text-anchor="middle">F1</text>
+
+    <path d="M1330 457 H1260" class="load-return"/>
+    <path d="M1190 752 V790" class="load-return"/>
+    <path d="M1178 790 H1202 M1182 797 H1198 M1187 804 H1193" class="load-return"/>
+  </g>
+
+  <g aria-label="Защитный диод">
+    <text x="1360" y="505" fill="#806a8f" font-size="12">D1* параллельно помпе</text>
+  </g>
+
+  <g aria-label="Краткая легенда">
+    <rect x="70" y="625" width="790" height="157" rx="18" fill="#fff" opacity=".85"/>
+    <text x="98" y="666" class="heading" font-size="18">Значки означают общие цепи</text>
+    <path d="M111 691 V718 M99 704 L111 692 L123 704" class="power-icon"/>
+    <text x="141" y="710" class="body">Одинаковый «3V3» — одна цепь питания.</text>
+    <path d="M111 734 V750 M99 750 H123 M103 757 H119 M107 764 H115" class="ground-icon"/>
+    <text x="141" y="754" class="body">Одинаковый GND — одна общая земля.</text>
+  </g>
+
+  <rect x="70" y="825" width="1470" height="45" rx="13" fill="#e5ece3"/>
+  <text x="92" y="854" class="small">* F1 — предохранитель. D1 подключить параллельно помпе, катодом к «+», если защита не встроена. Пусковой ток и распиновку IRF520N проверить.</text>
+</svg>

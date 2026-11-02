@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" style="max-width:100%;height:auto" role="img" aria-labelledby="title description">
+  <title id="title">Модульная система автополива MyIoT</title>
+  <desc id="description">Три отдельных корпуса: модуль питания, контроллер ESP32-C3 SuperMini и модуль MOSFET IRF520N. Контроллер получает данные с датчика влажности в горшке, а силовой модуль включает помпу в резервуаре и подаёт воду по трубке к растению.</desc>
+  <defs>
+    <linearGradient id="background" x2="0" y2="1">
+      <stop stop-color="#f6f7f1"/>
+      <stop offset="1" stop-color="#e9eee6"/>
+    </linearGradient>
+    <linearGradient id="moduleFront" x2="0" y2="1">
+      <stop stop-color="#253c32"/>
+      <stop offset="1" stop-color="#17271f"/>
+    </linearGradient>
+    <linearGradient id="moduleSide" x2="1" y2="1">
+      <stop stop-color="#15251e"/>
+      <stop offset="1" stop-color="#101c17"/>
+    </linearGradient>
+    <linearGradient id="moduleTop" x2="0" y2="1">
+      <stop stop-color="#668773"/>
+      <stop offset="1" stop-color="#3b5848"/>
+    </linearGradient>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#91d8d0" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#55a9a8" stop-opacity=".65"/>
+    </linearGradient>
+    <linearGradient id="pot" x2="0" y2="1">
+      <stop stop-color="#d78a60"/>
+      <stop offset="1" stop-color="#a95c3f"/>
+    </linearGradient>
+    <filter id="shadow" x="-.3" y="-.3" width="1.7" height="1.8">
+      <feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#24382c" flood-opacity=".17"/>
+    </filter>
+    <filter id="smallShadow" x="-.3" y="-.3" width="1.7" height="1.8">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#24382c" flood-opacity=".15"/>
+    </filter>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .title { fill: #20372b; font-size: 46px; font-weight: 750; letter-spacing: -1.5px; }
+      .subtitle { fill: #63776a; font-size: 21px; }
+      .module-title { fill: #f3f6ef; font-size: 23px; font-weight: 700; }
+      .module-sub { fill: #bdcfc2; font-size: 15px; }
+      .module-index { fill: #b6e6c6; font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+      .label { fill: #31483a; font-size: 16px; font-weight: 700; }
+      .small { fill: #6a7d70; font-size: 14px; }
+      .wire-red { fill: none; stroke: #d65b50; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-dark { fill: none; stroke: #354b3e; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .wire-signal { fill: none; stroke: #55a875; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+      .sensor-wire { fill: none; stroke: #419a79; stroke-width: 4; stroke-dasharray: 9 10; stroke-linecap: round; }
+      .tube { fill: none; stroke: #5da8a2; stroke-width: 13; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#background)"/>
+  <circle cx="1475" cy="106" r="205" fill="#dbe9dc" opacity=".48"/>
+  <circle cx="88" cy="915" r="190" fill="#e1eadc" opacity=".65"/>
+
+  <text x="82" y="96" class="title">Автополив MyIoT</text>
+  <text x="84" y="134" class="subtitle">Три сменных модуля управляют поливом растения</text>
+  <rect x="82" y="166" width="1436" height="1" fill="#d3ddd2"/>
+
+  <g filter="url(#smallShadow)">
+    <rect x="543" y="185" width="362" height="43" rx="21.5" fill="#fff" opacity=".86"/>
+    <circle cx="568" cy="206.5" r="6" fill="#419a79"/>
+    <text x="585" y="212" class="small" fill="#456052">Датчик влажности → ESP32-C3</text>
+  </g>
+  <path class="sensor-wire" d="M1376 383 C1376 260 1110 205 906 205 S724 267 575 350"/>
+
+  <g aria-label="Горшок с растением и датчиком влажности">
+    <path d="M1300 447 C1281 414 1281 370 1294 333 C1311 354 1321 382 1322 410 C1330 369 1353 333 1387 313 C1390 358 1371 397 1344 422 C1373 397 1413 386 1452 393 C1430 432 1392 451 1344 454 Z" fill="#4d9066"/>
+    <path d="M1320 447 C1312 402 1319 357 1334 325 C1347 366 1346 409 1335 449" fill="none" stroke="#36744e" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1330 444 C1352 415 1384 396 1419 393" fill="none" stroke="#36744e" stroke-width="4" stroke-linecap="round"/>
+    <path d="M1304 443 L1436 443 L1421 566 Q1370 590 1319 566 Z" fill="url(#pot)"/>
+    <ellipse cx="1370" cy="444" rx="66" ry="15" fill="#794733"/>
+    <ellipse cx="1370" cy="442" rx="57" ry="9" fill="#614431"/>
+    <path d="M1351 383 L1377 384 L1376 466 L1351 466 Z" rx="4" fill="#dce8df" stroke="#819b89" stroke-width="2"/>
+    <circle cx="1364" cy="398" r="4" fill="#55a875"/>
+    <path d="M1355 466 L1353 497 M1363 466 L1362 502 M1371 466 L1371 498" stroke="#bbc9bf" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="1370" cy="443" r="4" fill="#55a875"/>
+    <text x="1350" y="620" class="label">Датчик в грунте</text>
+    <text x="1363" y="644" class="small">ёмкостной v1.2</text>
+  </g>
+
+  <g aria-label="Отдельный резервуар и помпа">
+    <path d="M1248 735 Q1248 714 1270 710 L1465 710 Q1488 714 1488 735 L1474 902 Q1368 931 1262 902 Z" fill="#f8fbf8" fill-opacity=".72" stroke="#6b9180" stroke-width="5"/>
+    <path d="M1257 805 Q1368 785 1480 805 L1473 900 Q1368 927 1264 900 Z" fill="url(#water)" opacity=".91"/>
+    <path d="M1257 805 Q1368 785 1480 805" fill="none" stroke="#61aaa2" stroke-width="4"/>
+    <ellipse cx="1368" cy="735" rx="112" ry="23" fill="#edf5ef" fill-opacity=".82" stroke="#6b9180" stroke-width="5"/>
+    <path class="tube" d="M1285 863 C1250 848 1256 809 1289 795 C1311 785 1323 780 1323 754 L1323 586 C1323 560 1340 548 1368 548"/>
+    <path d="M1355 846 Q1368 831 1382 846 L1392 870 Q1368 883 1344 870 Z" fill="#253b31"/>
+    <rect x="1354" y="833" width="28" height="21" rx="4" fill="#3e5a4a"/>
+    <circle cx="1391" cy="856" r="4" fill="#b9e8cb"/>
+    <path d="M1277 866 Q1285 855 1294 866" fill="none" stroke="#e4f2ee" stroke-width="4" opacity=".8"/>
+    <text x="1282" y="954" class="label">Резервуар + помпа DC 3–6 В</text>
+  </g>
+
+  <g aria-label="Кабели между модулями" fill="none">
+    <path class="wire-dark" d="M265 474 C306 474 333 474 388 474"/>
+    <path class="wire-red" d="M265 501 C311 501 335 501 388 501"/>
+    <path class="wire-dark" d="M590 474 C637 474 662 474 718 474"/>
+    <path class="wire-red" d="M590 490 C638 490 661 490 718 490"/>
+    <path class="wire-signal" d="M590 506 C638 506 661 506 718 506"/>
+    <path class="wire-dark" d="M940 485 C1010 485 1010 564 1071 564 L1071 743 C1071 790 1121 817 1248 817"/>
+    <path class="wire-red" d="M940 509 C994 509 997 580 1047 580 L1047 759 C1047 824 1112 850 1248 850"/>
+    <circle cx="1248" cy="817" r="8" fill="#354b3e" stroke="none"/>
+    <circle cx="1248" cy="850" r="8" fill="#d65b50" stroke="none"/>
+  </g>
+
+  <g aria-label="Модуль питания" filter="url(#shadow)">
+    <path d="M74 403 L138 354 L329 354 L265 403 Z" fill="url(#moduleTop)" stroke="#14231b" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M265 403 L329 354 L329 560 L265 609 Z" fill="url(#moduleSide)" stroke="#101c17" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="74" y="403" width="191" height="206" rx="3" fill="url(#moduleFront)" stroke="#101c17" stroke-width="5"/>
+    <rect x="102" y="429" width="34" height="6" rx="3" fill="#a9e3bd"/>
+    <text x="102" y="474" class="module-index">МОДУЛЬ 01</text>
+    <text x="102" y="516" class="module-title">Питание</text>
+    <text x="102" y="546" class="module-sub">USB-C / батарейный блок</text>
+    <rect x="251" y="463" width="17" height="48" rx="5" fill="#d9e5db"/>
+    <circle cx="257" cy="478" r="3" fill="#d65b50"/>
+    <circle cx="257" cy="496" r="3" fill="#354b3e"/>
+  </g>
+
+  <g aria-label="Контроллер ESP32-C3 SuperMini" filter="url(#shadow)">
+    <path d="M399 403 L463 354 L654 354 L590 403 Z" fill="url(#moduleTop)" stroke="#14231b" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M590 403 L654 354 L654 560 L590 609 Z" fill="url(#moduleSide)" stroke="#101c17" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="399" y="403" width="191" height="206" rx="3" fill="url(#moduleFront)" stroke="#101c17" stroke-width="5"/>
+    <rect x="427" y="429" width="34" height="6" rx="3" fill="#a9e3bd"/>
+    <text x="427" y="474" class="module-index">МОДУЛЬ 02</text>
+    <text x="427" y="516" class="module-title">ESP32-C3</text>
+    <text x="427" y="546" class="module-sub">SuperMini · Wi-Fi</text>
+    <rect x="576" y="461" width="17" height="57" rx="5" fill="#d9e5db"/>
+    <circle cx="582" cy="473" r="3" fill="#354b3e"/>
+    <circle cx="582" cy="490" r="3" fill="#d65b50"/>
+    <circle cx="582" cy="507" r="3" fill="#55a875"/>
+  </g>
+
+  <g aria-label="Исполнительный MOSFET-модуль IRF520N" filter="url(#shadow)">
+    <path d="M729 403 L793 354 L984 354 L920 403 Z" fill="url(#moduleTop)" stroke="#14231b" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M920 403 L984 354 L984 560 L920 609 Z" fill="url(#moduleSide)" stroke="#101c17" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="729" y="403" width="191" height="206" rx="3" fill="url(#moduleFront)" stroke="#101c17" stroke-width="5"/>
+    <rect x="757" y="429" width="34" height="6" rx="3" fill="#a9e3bd"/>
+    <text x="757" y="474" class="module-index">МОДУЛЬ 03</text>
+    <text x="757" y="516" class="module-title">MOSFET</text>
+    <text x="757" y="546" class="module-sub">IRF520N · ключ помпы</text>
+    <rect x="906" y="461" width="17" height="62" rx="5" fill="#d9e5db"/>
+    <circle cx="912" cy="473" r="3" fill="#354b3e"/>
+    <circle cx="912" cy="492" r="3" fill="#d65b50"/>
+    <circle cx="912" cy="511" r="3" fill="#55a875"/>
+  </g>
+
+  <g>
+    <rect x="93" y="671" width="900" height="68" rx="17" fill="#fff" opacity=".8"/>
+    <circle cx="125" cy="705" r="8" fill="#d65b50"/>
+    <text x="144" y="711" class="small">питание</text>
+    <circle cx="276" cy="705" r="8" fill="#354b3e"/>
+    <text x="295" y="711" class="small">GND</text>
+    <circle cx="384" cy="705" r="8" fill="#55a875"/>
+    <text x="403" y="711" class="small">сигнал управления</text>
+    <text x="660" y="711" class="small">Отдельные корпуса · подписанные разъёмы</text>
+  </g>
+
+  <text x="83" y="945" class="small">Концепт системы. Точная распиновка модулей определяется по схеме выбранных плат.</text>
+</svg>
